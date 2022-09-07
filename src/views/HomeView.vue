@@ -53,7 +53,7 @@
         </ul>
       </section>
       <section id="section-3">
-        <form @submit.prevent="alertNotif">
+        <form @submit.prevent="alertNotif" ref="formReset">
           <h2>Contact Us</h2>
           <p>Name:</p>
           <input
@@ -140,6 +140,11 @@ export default {
           email: "",
           note: "",
         },
+        baseReset: {
+          name: "",
+          email: "",
+          note: "",
+        },
         error: {
           name: "",
           email: "",
@@ -149,16 +154,23 @@ export default {
   },
   methods: {
     changeCheck(indexLocation, name) {
-      if (name === "experience") {
-        this.experience[indexLocation].checkDescription =
-          !this.experience[indexLocation].checkDescription;
-      } else if (name === "education") {
-        this.education[indexLocation].checkDescription =
-          !this.education[indexLocation].checkDescription;
-      }
+      // if (name === "experience") {
+      //   this.experience[indexLocation].checkDescription =
+      //     !this.experience[indexLocation].checkDescription;
+      // } else if (name === "education") {
+      //   this.education[indexLocation].checkDescription =
+      //     !this.education[indexLocation].checkDescription;
+      // }
+      this[name][indexLocation].checkDescription =
+        !this[name][indexLocation].checkDescription;
     },
     alertNotif() {
       alert(
+        `Thank You ${this.form.base.name}, we'll send you an email to ${this.form.base.email} regarding ${this.form.base.note}`
+      );
+      this.$refs.formReset.reset();
+      this.form.base = this.form.baseReset;
+      console.info(
         `Thank You ${this.form.base.name}, we'll send you an email to ${this.form.base.email} regarding ${this.form.base.note}`
       );
     },
