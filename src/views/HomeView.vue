@@ -1,78 +1,84 @@
 <template>
-  <main>
-    <section>
-      <h1>Resume</h1>
-      <h2>Haloo, {{ name }}</h2>
-      <p>
-        {{ description }}
-      </p>
-    </section>
-    <section id="section-1">
-      <h2>Experience</h2>
-      <ul>
-        <li v-for="(item, index) in experience" :key="item.id">
-          <h3>{{ item.title }}</h3>
-          <h4>
-            {{ item.year }} |
-            <span @click="changeCheck(index, 'experience')">detail</span>
-          </h4>
-          <p v-if="item.checkDescription === true">
-            {{ item.description }}
-          </p>
-        </li>
-      </ul>
-      <h2>Education</h2>
-      <ul>
-        <li v-for="(item, index) in education" :key="item.id">
-          <h3>{{ item.title }}</h3>
-          <h4>
-            {{ item.year }} |
-            <span @click="changeCheck(index, 'education')">detail</span>
-          </h4>
-          <p v-if="item.checkDescription === true">
-            {{ item.description }}
-          </p>
-        </li>
-      </ul>
-    </section>
-    <section id="section-2">
-      <h2>Skills</h2>
-      <ul>
-        <li v-for="skill in skills" :key="skill.id">
-          <div>
-            <h3>{{ skill.name }}</h3>
-            <div
-              class="bar-percentage"
-              :style="{ width: skill.percentage + '%' }"
-            >
-              <p>{{ skill.percentage }} %</p>
+  <div class="grid">
+    <main>
+      <section>
+        <h1>Resume</h1>
+        <h2>Haloo, {{ name }}</h2>
+        <p>
+          {{ description }}
+        </p>
+      </section>
+      <section id="section-1">
+        <h2>Experience</h2>
+        <ul>
+          <li v-for="(item, index) in experience" :key="item.id">
+            <h3>{{ item.title }}</h3>
+            <h4>
+              {{ item.year }} |
+              <span @click="changeCheck(index, 'experience')">detail</span>
+            </h4>
+            <p v-if="item.checkDescription === true">
+              {{ item.description }}
+            </p>
+          </li>
+        </ul>
+        <h2>Education</h2>
+        <ul>
+          <li v-for="(item, index) in education" :key="item.id">
+            <h3>{{ item.title }}</h3>
+            <h4>
+              {{ item.year }} |
+              <span @click="changeCheck(index, 'education')">detail</span>
+            </h4>
+            <p v-if="item.checkDescription === true">
+              {{ item.description }}
+            </p>
+          </li>
+        </ul>
+      </section>
+      <section id="section-2">
+        <h2>Skills</h2>
+        <ul>
+          <li v-for="skill in skills" :key="skill.id">
+            <div>
+              <h3>{{ skill.name }}</h3>
+              <div
+                class="bar-percentage"
+                :style="{ width: skill.percentage + '%' }"
+              >
+                <p>{{ skill.percentage }} %</p>
+              </div>
             </div>
-          </div>
-        </li>
-      </ul>
-    </section>
-    <section id="section-3">
-      <form @submit="alertNotif">
-        <h2>Contact Us</h2>
-        <p>Name:</p>
-        <input v-model="form.base.name" placeholder="Masukkan nama" required />
-        <p>Email:</p>
-        <input
-          v-model="form.base.email"
-          placeholder="Masukkan email"
-          required
-        /><br />
-        <span class="alert"></span>
-        <p>Note:</p>
-        <textarea
-          v-model="form.base.note"
-          placeholder="add multiple lines"
-          required
-        ></textarea>
-        <button type="submit">Submit</button>
-      </form>
-    </section>
-  </main>
+          </li>
+        </ul>
+      </section>
+      <section id="section-3">
+        <form @submit="alertNotif">
+          <h2>Contact Us</h2>
+          <p>Name:</p>
+          <input
+            v-model="form.base.name"
+            placeholder="Masukkan nama"
+            required
+          />
+          <p>Email:</p>
+          <input
+            v-model="form.base.email"
+            placeholder="Masukkan email"
+            required
+          /><br />
+          <p>Note:</p>
+          <textarea
+            v-model="form.base.note"
+            placeholder="add multiple lines"
+            required
+          ></textarea>
+          <br />
+          <button type="submit">Submit</button>
+        </form>
+      </section>
+    </main>
+  </div>
 </template>
 
 <script>
@@ -161,7 +167,15 @@ export default {
 </script>
 
 <style scoped>
+.grid {
+  display: grid;
+  place-items: center;
+}
 main {
+  background-color: #b9fff8;
+  max-width: 50%;
+  margin: 30px 0;
+  padding-left: 20px;
 }
 .bar-percentage {
   background-color: blue;
@@ -176,7 +190,11 @@ main {
   color: aliceblue;
 }
 
-.alert {
-  color: red;
+button {
+  margin-top: 15px;
+}
+
+section {
+  margin-bottom: 20px;
 }
 </style>
