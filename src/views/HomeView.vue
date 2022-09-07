@@ -10,7 +10,7 @@
       </section>
       <section id="section-1">
         <h2>Experience</h2>
-        <ul>
+        <ol>
           <li v-for="(item, index) in experience" :key="item.id">
             <h3>{{ item.title }}</h3>
             <h4>
@@ -21,9 +21,9 @@
               {{ item.description }}
             </p>
           </li>
-        </ul>
+        </ol>
         <h2>Education</h2>
-        <ul>
+        <ol>
           <li v-for="(item, index) in education" :key="item.id">
             <h3>{{ item.title }}</h3>
             <h4>
@@ -34,7 +34,7 @@
               {{ item.description }}
             </p>
           </li>
-        </ul>
+        </ol>
       </section>
       <section id="section-2">
         <h2>Skills</h2>
@@ -53,7 +53,7 @@
         </ul>
       </section>
       <section id="section-3">
-        <form @submit="alertNotif">
+        <form @submit.prevent="alertNotif">
           <h2>Contact Us</h2>
           <p>Name:</p>
           <input
